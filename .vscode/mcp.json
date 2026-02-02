@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "ecommerce-mcp": {
+      "type": "http",
+      "url": "https://localhost:5235/mcp"
+    }
+  }
+}
