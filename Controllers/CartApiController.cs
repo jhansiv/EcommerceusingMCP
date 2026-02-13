@@ -25,15 +25,18 @@ namespace EcommerceApi.Controllers
             if (req.Quantity <= 0)
                 return BadRequest("Quantity must be > 0");
 
+            List<CartItem> cart = null;
             var product = EcommerceApi.Data.SampleData.Products.FirstOrDefault(p => p.Id == req.ProductId);
             if (product is null)
                 return NotFound("Product not found");
 
-            var cart = HttpContext.Session.GetJson<List<CartItem>>(CartKey) ?? new List<CartItem>();
+            //if (HttpContext.Session != null)
+            //    cart = HttpContext?.Session?.GetJson<List<CartItem>>(CartKey);
 
-            var existing = cart.FirstOrDefault(x => x.ProductId == product.Id);
+            var existing = cart?.FirstOrDefault(x => x.ProductId == product.Id);
             if (existing is null)
             {
+                cart = new List<CartItem>();
                 cart.Add(new CartItem
                 {
                     ProductId = product.Id,
@@ -47,9 +50,9 @@ namespace EcommerceApi.Controllers
                 existing.Quantity += req.Quantity;
             }
 
-            HttpContext.Session.SetJson(CartKey, cart);
+          //  HttpContext?.Session?.SetJson(CartKey, cart);
 
-            var total = cart.Sum(i => i.Price * i.Quantity);
+            var total = cart?.Sum(i => i.Price * i.Quantity);
             return Ok(new { items = cart, total });
         }
 

@@ -1,6 +1,6 @@
 # For more info on HTTP files go to https://aka.ms/vs/httpfile
 
-@HostAddress = https://localhost:5235
+@HostAddress = https://localhost:6020
 
 ### Get Random Number (default range 0-100)
 POST {{HostAddress}}/

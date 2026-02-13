@@ -18,14 +18,13 @@ builder.Services.AddControllers();
 builder.Services
     .AddMcpServer()
     .WithHttpTransport()
-    .WithTools<RandomNumberTools>()
-    .WithTools<EcommerceTools>();
+    .WithToolsFromAssembly();
 
 var app = builder.Build();
-app.MapMcp();
+app.MapMcp("mcp");
 app.UseHttpsRedirection();
 
 // Enable attribute routing for controllers
 app.MapControllers();
 
-app.Run();
+app.Run("http://localhost:6020");

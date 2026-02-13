@@ -11,7 +11,8 @@ namespace EcommerceusingMCP.Tools
     {
         private static readonly HttpClient httpClient = new HttpClient
         {
-            BaseAddress = new Uri("https://localhost:5235/")
+            // Updated to match Program.cs (app.Run("http://localhost:6020"))
+            BaseAddress = new Uri("http://localhost:6020/")
         };
 
         [McpServerTool, Description("Retrieves all available products from the e-commerce store.")]
